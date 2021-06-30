@@ -17,6 +17,7 @@ repositories {
 }
 
 micronaut {
+    runtime("netty")
     testRuntime("junit5")
     processing {
         incremental(true)
@@ -26,17 +27,35 @@ micronaut {
 
 dependencies {
     implementation("io.micronaut:micronaut-runtime")
-    implementation("io.micronaut.grpc:micronaut-grpc-runtime")
+    implementation("io.micronaut.grpc:micronaut-grpc-client-runtime")
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
+    implementation("io.micronaut:micronaut-http-client")
     implementation("javax.annotation:javax.annotation-api")
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     runtimeOnly("ch.qos.logback:logback-classic")
+    implementation("io.micronaut.data:micronaut-data-hibernate-jpa")
     implementation("io.micronaut:micronaut-validation")
-
+    implementation ("org.hibernate.validator:hibernate-validator:6.2.0.Final")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
+    implementation("io.micronaut.xml:micronaut-jackson-xml")
 
+
+    runtimeOnly ("org.postgresql:postgresql:42.2.21")
+    implementation("io.micronaut.sql:micronaut-jdbc-hikari")
+
+    //test
     testImplementation("io.micronaut:micronaut-http-client")
+    testImplementation("org.testcontainers:junit-jupiter")
+
+    testAnnotationProcessor("io.micronaut:micronaut-inject-java")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("org.mockito:mockito-core:3.11.1")
+    testImplementation("io.micronaut.test:micronaut-test-junit5:2.3.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
+
+    testImplementation("com.h2database:h2")
+
 
 }
 
