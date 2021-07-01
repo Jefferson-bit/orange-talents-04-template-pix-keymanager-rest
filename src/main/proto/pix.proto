@@ -25,6 +25,11 @@ service ListaChavesPix{
   rpc lista(ListaChavesPixRequest) returns (ListaChavesPixResponse){}
 }
 
+message ErroDetails{
+  int32 code = 1;
+  string message = 2;
+}
+
 enum TipoDeChave{
   DESCONHECIDO_CHAVE = 0;
   CPF = 1;

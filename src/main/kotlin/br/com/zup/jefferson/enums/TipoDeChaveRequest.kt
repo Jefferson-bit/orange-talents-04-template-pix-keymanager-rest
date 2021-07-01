@@ -1,12 +1,13 @@
 package br.com.zup.jefferson.enums
 
 
+import br.com.zup.jefferson.TipoDeChave
 import org.hibernate.validator.internal.constraintvalidators.hv.EmailValidator
 import org.hibernate.validator.internal.constraintvalidators.hv.br.CPFValidator
 
-enum class TipoDeChave {
+enum class TipoDeChaveRequest(val grpcAttribute: TipoDeChave) {
 
-    CPF {
+    CPF (TipoDeChave.CPF){
         override fun validaChave(chavePix: String?): Boolean {
             if(chavePix.isNullOrBlank()){
                 return false
@@ -22,7 +23,7 @@ enum class TipoDeChave {
         }
     },
 
-    EMAIL {
+    EMAIL(TipoDeChave.EMAIL) {
         override fun validaChave(chavePix: String?): Boolean {
             if(chavePix.isNullOrBlank()){
                 return false
@@ -34,7 +35,7 @@ enum class TipoDeChave {
         }
     },
 
-    NUMERO_CELULAR {
+    NUMERO_CELULAR(TipoDeChave.NUMERO_CELULAR) {
         override fun validaChave(chavePix: String?): Boolean {
             if(chavePix.isNullOrBlank()){
                 return false
@@ -43,7 +44,7 @@ enum class TipoDeChave {
         }
     },
 
-    CHAVE_ALEATORIA {
+    CHAVE_ALEATORIA(TipoDeChave.CHAVE_ALEATORIA) {
         override fun validaChave(chavePix: String?) = chavePix.isNullOrBlank()
     };
 

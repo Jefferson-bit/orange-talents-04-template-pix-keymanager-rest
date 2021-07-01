@@ -8,6 +8,12 @@ plugins {
     id("com.google.protobuf") version "0.8.15"
 }
 
+allOpen {
+    annotation("io.micronaut.http.annotation.Controller")
+    annotation("io.micronaut.context.annotation.Factory")
+    annotation("javax.inject.Singleton")
+}
+
 version = "0.1"
 group = "br.com.zup.jefferson"
 
@@ -24,6 +30,7 @@ micronaut {
         annotations("br.com.zup.jefferson.*")
     }
 }
+
 
 dependencies {
     implementation("io.micronaut:micronaut-runtime")
@@ -53,9 +60,7 @@ dependencies {
     testImplementation("org.mockito:mockito-core:3.11.1")
     testImplementation("io.micronaut.test:micronaut-test-junit5:2.3.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.0")
-
-    testImplementation("com.h2database:h2")
-
+    testImplementation ("org.mockito:mockito-inline:3.10.0")
 
 }
 
