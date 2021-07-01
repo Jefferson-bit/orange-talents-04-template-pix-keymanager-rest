@@ -48,7 +48,7 @@ internal class ChavePixControllerTest {
 
         BDDMockito.given(grpcClient.cadastra(BDDMockito.any())).willReturn(chavePixResponseGrpc)
 
-        val request = HttpRequest.POST("/api/v1/clientes/${UUID.randomUUID()}/chave", novaChaveRequest)
+            val request = HttpRequest.POST("/api/v1/clientes/${UUID.randomUUID()}/chave", novaChaveRequest)
         val httpClientRequest = httpClient.toBlocking().exchange(request, NovaChavePixRequest::class.java)
         val httpClientResponse = httpClient.toBlocking().retrieve(request, NovaChavePixResponse::class.java)
 
