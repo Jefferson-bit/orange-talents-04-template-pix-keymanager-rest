@@ -12,7 +12,7 @@ import javax.inject.Inject
 import javax.validation.Valid
 
 @Validated
-@Controller(value = "/api/v1/clientes/{clienteId}/chave")
+@Controller(value = "/api/v1/clientes/{clienteId}/pix")
 class ChavePixController(@Inject val grpc: PixServiceGrpc.PixServiceBlockingStub) {
 
     @Post

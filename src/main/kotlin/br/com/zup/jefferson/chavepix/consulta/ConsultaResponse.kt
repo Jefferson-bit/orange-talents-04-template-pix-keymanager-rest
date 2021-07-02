@@ -1,20 +1,17 @@
 package br.com.zup.jefferson.chavepix.consulta
 
 import br.com.zup.jefferson.ConsultaPixResponse
-import br.com.zup.jefferson.TipoDeChave
-import br.com.zup.jefferson.TipoDeConta
 import br.com.zup.jefferson.enums.TipoDeChaveRequest
 import br.com.zup.jefferson.enums.TipoDeContaRequest
-import java.util.*
 
-class ConsultaChaveResponse(
+class ConsultaResponse(
     val clienteId: String,
     val pixId: String,
     val chave: Chave? = null,
     val conta: Conta? = null
 ) {
-    fun of(consultaResponseGrpc: ConsultaPixResponse): ConsultaChaveResponse {
-        return ConsultaChaveResponse(
+    fun of(consultaResponseGrpc: ConsultaPixResponse): ConsultaResponse {
+        return ConsultaResponse(
             clienteId = consultaResponseGrpc.clienteId,
             pixId = consultaResponseGrpc.pixId,
             chave = Chave(
