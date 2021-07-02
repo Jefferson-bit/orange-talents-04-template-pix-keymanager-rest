@@ -14,30 +14,27 @@ import javax.inject.Inject
 class ListaChavesPixController(@Inject val grpcClient: ListaChavesPixGrpc.ListaChavesPixBlockingStub) {
 
     @Get
-    fun lista(clienteId: UUID): HttpResponse<List<ListaRequest>> {
+    fun lista(clienteId: UUID): HttpResponse<List<algo>> {
 
-        val request = ListaChavesPixRequest.newBuilder()
-                                            .setIdCliente(clienteId.toString())
-                                            .build()
-        val response = grpcClient.lista(request)
-        val lista = response.chavesPixList.map {
-            ListaRequest(
-                clienteId = response.idCliente,
-                tipodeChave = TipoDeChaveRequest.valueOf(it.tipoDeChave.name),
-                chavePix = it.chavePix,
-                pixId = it.pixId,
-                tipoDeConta = TipoDeContaRequest.valueOf(it.tipoDeConta.name)
-            )
-        }
+        val response = grpcClient.lista(ListaChavesPixRequest.newBuilder()
+            .setIdCliente(clienteId.toString())
+            .build())
+
+//        val lista = response.chavesPixList.map { algo(
+//            chavePix = it.chavePix,
+//            tipodeChave = TipoDeChaveRequest.valueOf(it.tipoDeChave.name),
+//            pixId = it.pixId,
+//            tipoDeConta = TipoDeContaRequest.valueOf(it.tipoDeConta.name))
+//         }
+
+        val lista = response.chavesPixList.map { algo(
+            chavePix = it.chavePix,
+            tipodeChave = TipoDeChaveRequest.valueOf(it.tipoDeChave.name),
+            pixId = it.pixId,
+            tipoDeConta = TipoDeContaRequest.valueOf(it.tipoDeConta.name)
+        ) }
 
         return HttpResponse.ok(lista)
+
     }
 }
-
-class ListaRequest(
-    val clienteId: String,
-    val tipodeChave: TipoDeChaveRequest,
-    val chavePix: String,
-    val pixId: String,
-    val tipoDeConta: TipoDeContaRequest
-) {}
